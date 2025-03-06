@@ -1,0 +1,47 @@
+{
+    "name": "arkitecht/laravel-hume",
+    "description": "Laravel API wrapper for the Hume API",
+    "type": "library",
+    "require": {
+        "illuminate/http": ">=10",
+        "illuminate/support": ">=10"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0",
+        "phpunit/phpunit": "^11"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Arkitecht\\LaravelHume\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aaron Jay Rubin",
+            "email": "aaron@arkitech.net"
+        }
+    ],
+    "autoload-dev": {
+        "psr-4": {
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/",
+            "Arkitecht\\LaravelHume\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ]
+    }
+}
