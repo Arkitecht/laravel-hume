@@ -24,10 +24,17 @@
     ],
     "autoload-dev": {
         "psr-4": {
-            "Workbench\\App\\": "workbench/app/",
-            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
-            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/",
             "Arkitecht\\LaravelHume\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Arkitecht\\LaravelHume\\Providers"
+            ],
+            "aliases": {
+                "Hume": "Arkitecht\\LaravelHume\\Facades\\Hume"
+            }
         }
     },
     "scripts": {
