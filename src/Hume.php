@@ -26,6 +26,8 @@ class Hume
     use ManagesCustomVoices;
 
     protected int $defaultPageSize = 25;
+    protected int $pageNumber = 0;
+    protected string $paginationDirection = 'desc';
 
     private Request $_lastRequest;
     private Response $_lastResponse;
@@ -69,6 +71,10 @@ class Hume
 
         $response = $pendingRequest->{$method}($uri, $parameters);
 
+        //reset
+        $this->pageNumber = 0;
+        $this->paginationDirection = 'desc';
+
         $this->_lastResponse = $response;
 
         $json = $response->json();
@@ -80,11 +86,26 @@ class Hume
         return $response;
     }
 
+    public function pageNumber(int $pageNumber): self
+    {
+        $this->pageNumber = $pageNumber;
+
+        return $this;
+    }
+
+    public function paginationDirection(string $direction = 'desc'): self
+    {
+        $this->paginationDirection = $direction;
+
+        return $this;
+    }
+
     private function getPaginationFromParameters(array &$parameters)
     {
         return $parameters = array_merge([
-            'page_number' => 0,
-            'page_size'   => $this->defaultPageSize,
+            'page_number'     => $this->pageNumber ?? 0,
+            'page_size'       => $this->defaultPageSize,
+            'ascending_order' => $this->paginationDirection === 'asc',
         ], $parameters);
     }
 }

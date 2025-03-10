@@ -27,6 +27,26 @@ class ConfigsTest extends TestCase
     }
 
     /** @test */
+    function can_get_configs_with_pagination()
+    {
+        $response = Hume::pageNumber(1)
+            ->paginationDirection('asc')
+            ->listConfigs();
+
+        $this->assertNotEmpty($response);
+        $this->assertNotEmpty($response->getConfigsPage());
+
+        $requestData = Hume::getLastRequest()->data();
+        $this->assertEquals(1, $requestData['page_number']);
+        $this->assertTrue($requestData['ascending_order']);
+
+        $response = Hume::listConfigs();
+        $requestData = Hume::getLastRequest()->data();
+        $this->assertEquals(0, $requestData['page_number']);
+        $this->assertFalse($requestData['ascending_order']);
+    }
+
+    /** @test */
     function can_create_config()
     {
         $configObject = $this->configObject();
