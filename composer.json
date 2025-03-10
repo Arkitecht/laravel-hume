@@ -30,7 +30,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Arkitecht\\LaravelHume\\Providers"
+                "Arkitecht\\LaravelHume\\Providers\\HumeServiceProvider"
             ],
             "aliases": {
                 "Hume": "Arkitecht\\LaravelHume\\Facades\\Hume"
