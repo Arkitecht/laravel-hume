@@ -66,7 +66,6 @@ class ConfigsTest extends TestCase
         $configId = $config->getId();
 
         $response = Hume::listConfigVersions($configId);
-        dump(Hume::getLastResponse());
 
         $this->assertNotEmpty($response);
         $this->assertEquals($response->first(), $config);
@@ -199,7 +198,6 @@ class ConfigsTest extends TestCase
     {
         $configObject = $this->configObject();
         $config = Hume::createConfig($configObject);
-        dump($config->getId());
 
         $this->assertNotEmpty($config);
         $this->assertEquals($configObject->getName(), $config->getName());

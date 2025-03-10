@@ -65,17 +65,14 @@ class CustomVoicesTest extends TestCase
     /** @test */
     function can_create_custom_voice_version()
     {
-        //$this->markTestSkipped('weird error');
-        //Hume::deleteCustomVoice('1e8191ce-e3e5-49b0-a0c8-4f90fd408d42');
         $voice = $this->customVoiceObject();
         $initialVoice = Hume::createCustomVoice($voice);
-        dump($initialVoice->getId());
 
         $this->assertNotEmpty($initialVoice);
         $this->assertEquals(BaseVoice::FINN, $initialVoice->getBaseVoice());
 
         $version = $this->customVoiceObject()
-            ->setName($voice->getname())
+            ->setName("")
             ->setBaseVoice(BaseVoice::ITO);
         try {
             $response = Hume::createCustomVoiceVersion($initialVoice->getId(), $version);
