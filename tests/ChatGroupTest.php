@@ -1,5 +1,7 @@
 <?php
 
+namespace Arkitecht\LaravelHume\Tests;
+
 use Arkitecht\LaravelHume\Facades\Hume;
 use Arkitecht\LaravelHume\Classes\ChatAudio;
 

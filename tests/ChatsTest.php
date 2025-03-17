@@ -1,5 +1,7 @@
 <?php
 
+namespace Arkitecht\LaravelHume\Tests;
+
 use Arkitecht\LaravelHume\Classes\Chat;
 use Arkitecht\LaravelHume\Facades\Hume;
 use Arkitecht\LaravelHume\Classes\ChatAudio;
@@ -27,7 +29,7 @@ class ChatsTest extends \Arkitecht\LaravelHume\Tests\TestCase
         $response = Hume::getChat($chatId);
 
         $this->assertNotEmpty($response);
-        $this->assertEquals($chat->getId(), $response->getId());
+        $this->assertEquals($chatId, $response->getId());
     }
 
     /** @test */
