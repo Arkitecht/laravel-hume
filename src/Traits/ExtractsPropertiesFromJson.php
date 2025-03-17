@@ -34,8 +34,15 @@ trait ExtractsPropertiesFromJson
 
                 continue;
             }
+
             if (Str::contains($propertyType, 'Arkitecht\LaravelHume\Enums')) {
                 $object->$key = $propertyType::from($value);
+
+                continue;
+            }
+
+            if ($propertyType === 'object' && is_string($value)) {
+                $object->$key = json_decode($value);
 
                 continue;
             }

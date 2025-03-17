@@ -12,7 +12,7 @@ class ChatEvent extends AbstractClass
     protected int $timestamp;
     protected Role $role;
     protected ChatEventType $type;
-    protected ?string $messageText;
+    protected string $messageText = '';
     protected array|object|null $emotionFeatures;
     protected array|object|null $metadata;
 
