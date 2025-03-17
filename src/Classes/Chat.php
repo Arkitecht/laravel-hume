@@ -17,7 +17,7 @@ class Chat extends AbstractClass
     protected ?int $endTimestamp;
     protected ?int $eventCount;
     protected array|Collection|null $eventsPage;
-    protected object|array|null $metadata;
+    protected object|array|null $metadata = null;
     protected ?string $tag;
     protected Config $config;
 
@@ -105,7 +105,7 @@ class Chat extends AbstractClass
         return $this;
     }
 
-    public function getMetadata(): ?string
+    public function getMetadata(): array|object|null
     {
         return $this->metadata;
     }

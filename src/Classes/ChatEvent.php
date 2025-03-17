@@ -13,8 +13,8 @@ class ChatEvent extends AbstractClass
     protected Role $role;
     protected ChatEventType $type;
     protected string $messageText = '';
-    protected array|object|null $emotionFeatures;
-    protected array|object|null $metadata;
+    protected object|array|null $emotionFeatures = null;
+    protected object|array|null $metadata = null;
 
     public function getId(): string
     {
@@ -88,7 +88,7 @@ class ChatEvent extends AbstractClass
         return $this;
     }
 
-    public function getEmotionFeatures(): ?string
+    public function getEmotionFeatures(): array|object|null
     {
         return $this->emotionFeatures;
     }
@@ -100,7 +100,7 @@ class ChatEvent extends AbstractClass
         return $this;
     }
 
-    public function getMetadata(): ?string
+    public function getMetadata(): array|object|null
     {
         return $this->metadata;
     }
