@@ -12,12 +12,12 @@ class ChatAudio extends AbstractClass
     protected string $userId;
     protected ChatAudioStatus $status;
 
-    protected ?string $filename;
-    protected ?int $modifiedAt;
+    protected ?string $filename = null;
+    protected ?int $modifiedAt = null;
 
-    protected ?string $signedAudioUrl;
+    protected ?string $signedAudioUrl = null;
 
-    protected ?int $signedUrlExpirationTimestampMillis;
+    protected ?int $signedUrlExpirationTimestampMillis = null;
 
     protected Carbon $createdAt;
 
