@@ -4,6 +4,7 @@ namespace Arkitecht\LaravelHume\Enums;
 
 enum ModelResource: string
 {
+    case CLAUDE_3_7_SONNET_LATEST = 'claude-3-7-sonnet-latest';
     case CLAUDE_3_5_SONNET_LATEST = 'claude-3-5-sonnet-latest';
     case CLAUDE_3_5_HAIKU_LATEST = 'claude-3-5-haiku-latest';
     case CLAUDE_3_5_SONNET_20240620 = 'claude-3-5-sonnet-20240620';

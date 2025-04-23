@@ -22,7 +22,7 @@ trait HandlesAuth
 
         }
 
-        return AccessTokenResponse::fromJson($response->json());
+        return AccessTokenResponse::fromJson($response->json()??[]);
     }
 
     public function usingAccessToken()
