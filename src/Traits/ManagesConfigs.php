@@ -41,9 +41,9 @@ trait ManagesConfigs
         return ConfigListResponse::fromJson($response->json());
     }
 
-    public function createConfigVersion(string $configId, Config $version): Config
+    public function createConfigVersion(string $configId, Config|array $version): Config
     {
-        $response = $this->request(uri: 'https://api.hume.ai/v0/evi/configs/' . $configId, method: 'post', parameters: $version->toArray());
+        $response = $this->request(uri: 'https://api.hume.ai/v0/evi/configs/' . $configId, method: 'post', parameters: (is_array($version)?$version:$version->toArray()));
 
         return Config::fromJson($response->json());
     }

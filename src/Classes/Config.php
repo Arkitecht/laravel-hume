@@ -25,15 +25,15 @@ class Config extends AbstractClass
     protected Prompt $prompt;
     protected Voice $voice;
 
-    protected LanguageModel $languageModel;
+    protected ?LanguageModel $languageModel = null;
 
-    protected EllmModel $ellmModel;
+    protected ?EllmModel $ellmModel = null;
 
     protected array $tools;
 
     protected array $builtinTools;
 
-    protected EventMessages $eventMessages;
+    protected ?EventMessages $eventMessages = null;
 
     protected Timeout $timeouts;
 
@@ -147,7 +147,7 @@ class Config extends AbstractClass
         return $this;
     }
 
-    public function getLanguageModel(): LanguageModel
+    public function getLanguageModel(): ?LanguageModel
     {
         return $this->languageModel;
     }
@@ -159,7 +159,7 @@ class Config extends AbstractClass
         return $this;
     }
 
-    public function getEllmModel(): EllmModel
+    public function getEllmModel(): ?EllmModel
     {
         return $this->ellmModel;
     }
@@ -195,7 +195,7 @@ class Config extends AbstractClass
         return $this;
     }
 
-    public function getEventMessages(): EventMessages
+    public function getEventMessages(): ?EventMessages
     {
         return $this->eventMessages;
     }
