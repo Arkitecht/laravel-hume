@@ -9,7 +9,7 @@ class Voice extends AbstractClass
     protected string $name;
     protected ?array $customVoice;
 
-    public function getName(): string|null
+    public function getName(): ?string
     {
         return $this->name ?? null;
     }

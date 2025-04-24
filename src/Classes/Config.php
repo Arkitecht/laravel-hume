@@ -147,7 +147,7 @@ class Config extends AbstractClass
         return $this;
     }
 
-    public function getLanguageModel(): LanguageModel|null
+    public function getLanguageModel(): ?LanguageModel
     {
         return $this->languageModel;
     }
@@ -159,7 +159,7 @@ class Config extends AbstractClass
         return $this;
     }
 
-    public function getEllmModel(): EllmModel|null
+    public function getEllmModel(): ?EllmModel
     {
         return $this->ellmModel;
     }
@@ -195,7 +195,7 @@ class Config extends AbstractClass
         return $this;
     }
 
-    public function getEventMessages(): EventMessages|null
+    public function getEventMessages(): ?EventMessages
     {
         return $this->eventMessages;
     }

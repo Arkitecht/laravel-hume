@@ -11,7 +11,7 @@ class LanguageModel extends AbstractClass
     protected ?ModelResource $modelResource = null;
     protected ?float $temperature = null;
 
-    public function getModelProvider(): ModelProvider|null
+    public function getModelProvider(): ?ModelProvider
     {
         return $this->modelProvider;
     }
@@ -22,7 +22,7 @@ class LanguageModel extends AbstractClass
         return $this;
     }
 
-    public function getModelResource(): ModelResource|null
+    public function getModelResource(): ?ModelResource
     {
         return $this->modelResource;
     }
@@ -33,7 +33,7 @@ class LanguageModel extends AbstractClass
         return $this;
     }
 
-    public function getTemperature(): float|null
+    public function getTemperature(): ?float
     {
         return $this->temperature;
     }
