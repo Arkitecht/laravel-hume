@@ -230,5 +230,4 @@ class Config extends AbstractClass
 
         return $this;
     }
-
 }

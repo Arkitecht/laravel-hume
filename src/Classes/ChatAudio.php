@@ -107,7 +107,7 @@ class ChatAudio extends AbstractClass
 
     public function expiresAt(): Carbon
     {
-        return $this->createdAt->clone()->addMillis($this->signedUrlExpirationTimestampMillis);
+        return Carbon::createFromTimestampMs($this->signedUrlExpirationTimestampMillis);
     }
 
     public function afterExtraction()
