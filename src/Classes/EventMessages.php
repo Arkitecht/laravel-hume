@@ -8,6 +8,7 @@ class EventMessages extends AbstractClass
     protected OnResumeChat $onResumeChat;
     protected OnDisconnectResumeChat $onDisconnectResumeChat;
     protected OnInactivityTimeout $onInactivityTimeout;
+    protected OnSilenceTimeout $onSilenceTimeout;
     protected OnMaxDurationTimeout $onMaxDurationTimeout;
 
     public function getOnNewChat(): OnNewChat
@@ -51,6 +52,17 @@ class EventMessages extends AbstractClass
     public function setOnInactivityTimeout(OnInactivityTimeout $onInactivityTimeout)
     {
         $this->onInactivityTimeout = $onInactivityTimeout;
+        return $this;
+    }
+
+    public function getOnSilenceTimeout(): OnSilenceTimeout
+    {
+        return $this->onSilenceTimeout;
+    }
+
+    public function setOnSilenceTimeout(OnSilenceTimeout $onSilenceTimeout)
+    {
+        $this->onSilenceTimeout = $onSilenceTimeout;
         return $this;
     }
 

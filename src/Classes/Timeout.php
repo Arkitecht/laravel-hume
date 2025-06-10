@@ -5,6 +5,7 @@ namespace Arkitecht\LaravelHume\Classes;
 class Timeout extends AbstractClass
 {
     protected Inactivity $inactivity;
+    protected Silence $silence;
     protected MaxDuration $maxDuration;
 
     public function getInactivity(): Inactivity
@@ -15,6 +16,17 @@ class Timeout extends AbstractClass
     public function setInactivity(Inactivity $inactivity): Timeout
     {
         $this->inactivity = $inactivity;
+        return $this;
+    }
+
+    public function getSilence(): Silence
+    {
+        return $this->silence;
+    }
+
+    public function setSilence(Silence $silence): Timeout
+    {
+        $this->silence = $silence;
         return $this;
     }
 
