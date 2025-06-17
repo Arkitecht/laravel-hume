@@ -14,7 +14,7 @@ class Chat extends AbstractClass
     protected string $chatGroupId;
     protected ChatStatus $status;
     protected ?int $startTimestamp;
-    protected ?int $endTimestamp;
+    protected int|null $endTimestamp = null;
     protected ?int $eventCount;
     protected array|Collection|null $eventsPage;
     protected object|array|null $metadata = null;
