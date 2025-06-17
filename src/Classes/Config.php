@@ -35,9 +35,13 @@ class Config extends AbstractClass
 
     protected ?EventMessages $eventMessages = null;
 
+    protected Nudges $nudges;
+
     protected Timeout $timeouts;
 
     protected ?array $webhooks;
+
+    protected ?array $contextInjection;
 
     public function getId(): string
     {
@@ -207,6 +211,18 @@ class Config extends AbstractClass
         return $this;
     }
 
+    public function getNudges(): ?Nudges
+    {
+        return $this->nudges;
+    }
+
+    public function setNudges(?Nudges $nudges): Config
+    {
+        $this->nudges = $nudges;
+
+        return $this;
+    }
+
     public function getTimeouts(): Timeout
     {
         return $this->timeouts;
@@ -227,6 +243,18 @@ class Config extends AbstractClass
     public function setWebhooks(?array $webhooks): Config
     {
         $this->webhooks = $webhooks;
+
+        return $this;
+    }
+
+    public function getContextInjection(): ?array
+    {
+        return $this->contextInjection;
+    }
+
+    public function setContextInjection(?array $contextInjection): Config
+    {
+        $this->contextInjection = $contextInjection;
 
         return $this;
     }
