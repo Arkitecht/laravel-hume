@@ -4,6 +4,7 @@ namespace Arkitecht\LaravelHume\Classes;
 
 class Voice extends AbstractClass
 {
+    protected ?string $id;
     protected ?string $type;
     protected string $provider;
     protected string $name;
