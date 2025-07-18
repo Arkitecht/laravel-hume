@@ -10,6 +10,18 @@ class Voice extends AbstractClass
     protected string $name;
     protected ?array $customVoice;
 
+    public function getId(): ?string
+    {
+        return $this->id ?? null;
+    }
+
+    public function setId(string $id): Voice
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getName(): ?string
     {
         return $this->name ?? null;
