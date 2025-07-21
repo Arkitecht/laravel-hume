@@ -10,31 +10,31 @@ class CustomVoiceListResponse extends AbstractResponse
 {
     use HasPagination;
 
-    protected array|Collection $customVoicesPage;
+    protected array|Collection $voicesPage;
 
     public function getCustomVoicesPage(): array|Collection
     {
-        return $this->customVoicesPage;
+        return $this->voicesPage;
     }
 
-    public function setCustomVoicesPage(array $customVoicesPage): CustomVoiceListResponse
+    public function setCustomVoicesPage(array $voicesPage): CustomVoiceListResponse
     {
-        $this->customVoicesPage = $customVoicesPage;
+        $this->voicesPage = $voicesPage;
 
         return $this;
     }
 
     public function __call(string $function, array $arguments)
     {
-        return collect($this->customVoicesPage)->$function(...$arguments);
+        return collect($this->voicesPage)->$function(...$arguments);
     }
 
     public function afterExtraction()
     {
-        if (isset($this->customVoicesPage)) {
-            $this->customVoicesPage = collect($this->customVoicesPage)->map(fn($config) => CustomVoice::fromJson($config));
+        if (isset($this->voicesPage)) {
+            $this->voicesPage = collect($this->voicesPage)->map(fn($config) => CustomVoice::fromJson($config));
         } else {
-            $this->customVoicesPage = collect();
+            $this->voicesPage = collect();
         }
     }
 }
