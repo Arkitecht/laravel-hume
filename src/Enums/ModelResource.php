@@ -34,5 +34,5 @@ enum ModelResource: string
     case ACCOUNTS_FIREWORKS_MODELS_LLAMA_V3P1_70B_INSTRUCT = 'accounts/fireworks/models/llama-v3p1-70b-instruct';
     case ACCOUNTS_FIREWORKS_MODELS_LLAMA_V3P1_8B_INSTRUCT = 'accounts/fireworks/models/llama-v3p1-8b-instruct';
     case ELLM = 'ellm';
-
+    case CUSTOM_LANGUAGE_MODEL = 'custom-language-model';
 }
