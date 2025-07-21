@@ -19,12 +19,13 @@ trait ManagesCustomVoices
     public function listCustomVoices(array $parameters = []): CustomVoiceListResponse
     {
         $this->getPaginationFromParameters($parameters);
-
-        $response = $this->request(uri: 'https://api.hume.ai/v0/evi/custom_voices', parameters: $parameters);
-
+        $parameters['provider'] = 'CUSTOM_VOICE';
+        $response = $this->request(uri: 'https://api.hume.ai/v0/tts/voices', parameters: $parameters);
         return CustomVoiceListResponse::fromJson($response->json());
     }
 
+    //TODO Fix endpoints for v3
+    /*
     public function createCustomVoice(CustomVoice $voice): CustomVoice
     {
         $response = $this->request(uri: 'https://api.hume.ai/v0/evi/custom_voices', method: 'post', parameters: $voice->toArray());
@@ -59,4 +60,5 @@ trait ManagesCustomVoices
 
         return $response->successful();
     }
+    */
 }

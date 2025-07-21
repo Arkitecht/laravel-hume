@@ -16,6 +16,7 @@ class CustomVoice extends AbstractClass
     protected string $parameterModel = '20241004-11parameter';
     protected ?CustomVoiceParameters $parameters;
     protected int $speechRateMultiplier;
+    protected string $provider = 'CUSTOM_VOICE';
 
     public function getId(): string
     {
