@@ -8,7 +8,7 @@ use Arkitecht\LaravelHume\Enums\ModelResource;
 class LanguageModel extends AbstractClass
 {
     protected ?ModelProvider $modelProvider = null;
-    protected ?ModelResource $modelResource = null;
+    protected ?string $modelResource = null;
     protected ?float $temperature = null;
 
     public function getModelProvider(): ?ModelProvider
@@ -22,12 +22,12 @@ class LanguageModel extends AbstractClass
         return $this;
     }
 
-    public function getModelResource(): ?ModelResource
+    public function getModelResource(): ?string
     {
         return $this->modelResource;
     }
 
-    public function setModelResource(ModelResource $modelResource)
+    public function setModelResource(string $modelResource)
     {
         $this->modelResource = $modelResource;
         return $this;
