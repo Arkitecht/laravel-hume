@@ -17,6 +17,7 @@ class CustomVoice extends AbstractClass
     protected ?CustomVoiceParameters $parameters;
     protected int $speechRateMultiplier;
     protected string $provider = 'CUSTOM_VOICE';
+    protected ?array $tags = [];
 
     public function getId(): string
     {
@@ -126,4 +127,15 @@ class CustomVoice extends AbstractClass
         return $this;
     }
 
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+    public function setTags(array $tags): CustomVoice
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
 }

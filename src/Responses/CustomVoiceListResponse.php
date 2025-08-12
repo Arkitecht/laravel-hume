@@ -11,6 +11,8 @@ class CustomVoiceListResponse extends AbstractResponse
     use HasPagination;
 
     protected array|Collection $voicesPage;
+    protected ?string $fault = null;
+    protected ?array $voiceTagSummary = null;
 
     public function getCustomVoicesPage(): array|Collection
     {
@@ -20,6 +22,30 @@ class CustomVoiceListResponse extends AbstractResponse
     public function setCustomVoicesPage(array $voicesPage): CustomVoiceListResponse
     {
         $this->voicesPage = $voicesPage;
+
+        return $this;
+    }
+
+    public function getFault(): string
+    {
+        return $this->fault;
+    }
+
+    public function setFault(string $fault): CustomVoiceListResponse
+    {
+        $this->fault = $fault;
+
+        return $this;
+    }
+
+    public function getVoiceTagSummary(): array
+    {
+        return $this->voiceTagSummary;
+    }
+
+    public function setVoiceTagSummary(array $voiceTagSummary): CustomVoiceListResponse
+    {
+        $this->voiceTagSummary = $voiceTagSummary;
 
         return $this;
     }
