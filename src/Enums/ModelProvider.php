@@ -10,4 +10,5 @@ enum ModelProvider: string
     case FIREWORKS = 'FIREWORKS';
     case GROQ = 'GROQ';
     case GOOGLE = 'GOOGLE';
+    case HUME_AI = 'HUME_AI';
 }
