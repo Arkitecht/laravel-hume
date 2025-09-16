@@ -3,12 +3,14 @@
 namespace Arkitecht\LaravelHume\Traits;
 
 use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use ReflectionProperty;
 
 trait ExtractsPropertiesFromJson
 {
     protected $_json;
+    protected $_properties = [];
 
     public static function fromJson(array $json): static
     {
@@ -17,36 +19,42 @@ trait ExtractsPropertiesFromJson
         $class = new \ReflectionClass(get_class($object));
 
         foreach ($json as $key => $value) {
-            $key = str($key)->replace('/', '_')->camel();
+            $key = str($key)->replace('/', '_')->camel()->toString();
 
-            $property = new ReflectionProperty(get_class($object), $key);
-            $propertyType = $property->getType();
-            if (is_a($propertyType, \ReflectionUnionType::class)) {
-                $propertyType = $propertyType->getTypes()[0];
+            try {
+                $property = new ReflectionProperty(get_class($object), $key);
+                $propertyType = $property->getType();
+                if (is_a($propertyType, \ReflectionUnionType::class)) {
+                    $propertyType = $propertyType->getTypes()[0];
+                }
+                $propertyType = $propertyType->getName();
+                if ($value === null) {
+                    continue;
+                }
+
+                if (Str::contains($propertyType, 'Arkitecht\LaravelHume\Classes')) {
+                    $object->$key = $propertyType::fromJson($value);
+
+                    continue;
+                }
+
+                if (Str::contains($propertyType, 'Arkitecht\LaravelHume\Enums')) {
+                    $object->$key = $propertyType::from($value);
+
+                    continue;
+                }
+
+                if ($propertyType === 'object' && is_string($value)) {
+                    $object->$key = json_decode($value);
+
+                    continue;
+                }
+                $object->$key = $value;
+            } catch (\ReflectionException $e) {
+                Log::warning('Property not found:' . $e->getMessage());
+
+                $object->_properties[ $key ] = $value;
             }
-            $propertyType = $propertyType->getName();
-            if ($value === null) {
-                continue;
-            }
-
-            if (Str::contains($propertyType, 'Arkitecht\LaravelHume\Classes')) {
-                $object->$key = $propertyType::fromJson($value);
-
-                continue;
-            }
-
-            if (Str::contains($propertyType, 'Arkitecht\LaravelHume\Enums')) {
-                $object->$key = $propertyType::from($value);
-
-                continue;
-            }
-
-            if ($propertyType === 'object' && is_string($value)) {
-                $object->$key = json_decode($value);
-
-                continue;
-            }
-            $object->$key = $value;
         }
 
         if (method_exists($object, 'afterExtraction')) {
@@ -54,6 +62,19 @@ trait ExtractsPropertiesFromJson
         }
 
         return $object;
+    }
+
+    public function __get(string $name): mixed
+    {
+        if (!property_exists($this, $name)) {
+            if (array_key_exists($name, $this->_properties)) {
+                return $this->_properties[ $name ];
+            }
+
+            return null;
+        }
+
+        return $this->{$name};
     }
 
     public function toArray(): array
